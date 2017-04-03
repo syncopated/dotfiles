@@ -45,7 +45,6 @@ brew install vim --with-override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
-brew install homebrew/php/php56 --with-gmp
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -105,7 +104,7 @@ brew install apg
 brew install pwgen
 brew install httpie
 brew install ripgrep
-brew install w
+brew install z
 brew install dnsmasq
 
 # Remove outdated versions from the cellar.
