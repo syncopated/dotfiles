@@ -1,6 +1,6 @@
 # Greg’s dotfiles
 
-Heavily inspired from [Mathias' dot files] (https://mths.be/dotfiles). Tailored slightly for my workflow and setup prefs.
+Heavily inspired from [Mathias' dot files](https://mths.be/dotfiles). Tailored slightly for my workflow and setup prefs.
 
 
 ## Installation
