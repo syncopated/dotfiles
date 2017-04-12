@@ -105,6 +105,8 @@ brew install httpie
 brew install ripgrep
 brew install z
 brew install dnsmasq
+brew install tmux
+brew install reattach-to-user-namespace
 
 # Remove outdated versions from the cellar.
 brew cleanup
