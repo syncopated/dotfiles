@@ -99,7 +99,6 @@ brew install tree
 # brew install webkit2png
 # brew install zopfli
 brew install ansiweather
-brew install apg
 brew install pwgen
 brew install httpie
 brew install ripgrep
