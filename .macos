@@ -202,7 +202,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+defaults write com.apple.screencapture location -string "${HOME}/Pictures/screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -227,10 +227,10 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-# Set Desktop as the default location for new Finder windows
+# Set the home directory as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -602,49 +602,49 @@ defaults write com.apple.terminal StringEncodings -array 4
 
 # Use a modified version of the Solarized Dark theme by default in Terminal.app
 # osascript <<EOD
-# 
+#
 # tell application "Terminal"
-# 
+#
 # 	local allOpenedWindows
 # 	local initialOpenedWindows
 # 	local windowID
 # 	set themeName to "Solarized Dark xterm-256color"
-# 
+#
 # 	(* Store the IDs of all the open terminal windows. *)
 # 	set initialOpenedWindows to id of every window
-# 
+#
 # 	(* Open the custom theme so that it gets added to the list
 # 	   of available terminal themes (note: this will open two
 # 	   additional terminal windows). *)
 # 	do shell script "open '$HOME/init/" & themeName & ".terminal'"
-# 
+#
 # 	(* Wait a little bit to ensure that the custom theme is added. *)
 # 	delay 1
-# 
+#
 # 	(* Set the custom theme as the default terminal theme. *)
 # 	set default settings to settings set themeName
-# 
+#
 # 	(* Get the IDs of all the currently opened terminal windows. *)
 # 	set allOpenedWindows to id of every window
-# 
+#
 # 	repeat with windowID in allOpenedWindows
-# 
+#
 # 		(* Close the additional windows that were opened in order
 # 		   to add the custom theme to the list of terminal themes. *)
 # 		if initialOpenedWindows does not contain windowID then
 # 			close (every window whose id is windowID)
-# 
+#
 # 		(* Change the theme for the initial opened terminal windows
 # 		   to remove the need to close them in order for the custom
 # 		   theme to be applied. *)
 # 		else
 # 			set current settings of tabs of (every window whose id is windowID) to settings set themeName
 # 		end if
-# 
+#
 # 	end repeat
-# 
+#
 # end tell
-# 
+#
 # EOD
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
