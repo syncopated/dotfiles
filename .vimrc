@@ -1,7 +1,4 @@
-" Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible
@@ -17,9 +14,6 @@ set backspace=indent,eol,start
 
 " Optimize for fast terminal connections
 set ttyfast
-
-" Add the g flag to search/replace by default
-set gdefault
 
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
@@ -91,10 +85,18 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'mileszs/ack.vim'
+Plug 'dracula/vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'itchyny/lightline.vim'
 call plug#end()
+
+" Use the Dracula colorscheme
+colorscheme dracula
+
+let g:lightline = {
+      \ 'colorscheme': 'Dracula',
+      \ }
 
 " Mappings
 let mapleader = ","
