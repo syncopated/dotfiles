@@ -89,6 +89,7 @@ Plug 'mileszs/ack.vim'
 Plug 'dracula/vim'
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " Use the Dracula colorscheme
