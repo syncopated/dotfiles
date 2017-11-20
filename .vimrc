@@ -87,8 +87,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mileszs/ack.vim'
 Plug 'dracula/vim'
-Plug 'digitaltoad/vim-pug'
 Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Use the Dracula colorscheme
