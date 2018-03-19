@@ -60,3 +60,6 @@
 
   default = simple
 
+[user]
+	name = Greg Davidson
+	email = davidson.mj@gmail.com
