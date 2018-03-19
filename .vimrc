@@ -90,7 +90,14 @@ Plug 'dracula/vim'
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
+Plug 'w0rp/ale'
 call plug#end()
+
+" use ripgrep via ack.vim
+if executable("rg")
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    let g:ackprg = 'rg --vimgrep --no-heading'
+endif
 
 " Use the Dracula colorscheme
 colorscheme dracula
