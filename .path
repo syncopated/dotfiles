@@ -1,0 +1,10 @@
+# the `brew --prefix` is where ruby is coming in to the shell :/
+# I don't think I'm really using the coreutils so could maybe remove this
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/mozjpeg/bin:$PATH"
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+export N_PREFIX="$HOME/.n"
+export PATH=$N_PREFIX/bin:$PATH

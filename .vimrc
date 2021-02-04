@@ -1,4 +1,3 @@
-set background=dark
 
 " Make Vim more useful
 set nocompatible
@@ -10,7 +9,7 @@ set clipboard=unnamed
 set wildmenu
 
 " Allow backspace in insert mode
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 
 " Optimize for fast terminal connections
 set ttyfast
@@ -22,8 +21,8 @@ set encoding=utf-8 nobomb
 let mapleader=","
 
 " Don’t add empty newlines at the end of files
-set binary
-set noeol
+" set binary
+" set noeol
 
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
@@ -42,7 +41,7 @@ set number
 syntax on
 
 " Highlight current line
-set cursorline
+"set cursorline
 
 " Make tabs as wide as two spaces
 set tabstop=2 softtabstop=2 shiftwidth=2
@@ -80,36 +79,70 @@ set shortmess=atI
 " set showmode
 
 " Plugins
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-fugitive'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'mileszs/ack.vim'
-Plug 'dracula/vim'
-Plug 'itchyny/lightline.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'w0rp/ale'
-call plug#end()
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'} )
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-git')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('editorconfig/editorconfig-vim')
+call minpac#add('mileszs/ack.vim')
+call minpac#add('dracula/vim', {'name': 'dracula' })
+packadd! dracula
+call minpac#add('itchyny/lightline.vim')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-unimpaired')
+"call minpac#add('pangloss/vim-javascript')
+call minpac#add('othree/yajs.vim')
+call minpac#add('dense-analysis/ale')
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('junegunn/fzf.vim')
+"call minpac#add('evanleck/vim-svelte')
+call minpac#add('plasticboy/vim-markdown')
+call minpac#add('jelera/vim-javascript-syntax')
+call minpac#add('mhinz/vim-grepper')
 
-" use ripgrep via ack.vim
+let g:grepper = {}
+let g:grepper.tools = ['grep', 'git', 'rg']
+
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+
+
+" configure ripgrep for use with Grepper
 if executable("rg")
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-    let g:ackprg = 'rg --vimgrep --no-heading'
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep
+    set grepformat=$f:$l:%c:%m
 endif
+
+function! SetupCommandAlias(input, output)
+  exec 'cabbrev <expr> '.a:input
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:input.'")'
+        \ .'? ("'.a:output.'") : ("'.a:input.'"))'
+endfunction
+call SetupCommandAlias("grep", "GrepperRg")
 
 " Use the Dracula colorscheme
 colorscheme dracula
+"set termguicolors
+highlight Comment cterm=italic
+set noshowmode
 
+" lightline
 let g:lightline = {
-      \ 'colorscheme': 'Dracula',
+      \ 'colorscheme': 'dracula',
       \ }
 
 " Mappings
 let mapleader = ","
-inoremap jj <Esc>`^
+map <leader>n :NERDTreeToggle<CR>
 set pastetoggle=<leader>t
+" nmap ; :Buffers<CR>
+nmap <leader>f :Files<CR>
+nmap <leader>s :w<CR>
+imap <leader>s <Esc>:w<CR>i
+map <leader>a :ALEToggle<CR>
+map <leader>r :redraw!<CR>
 
 " Automatic commands
 if has("autocmd")
@@ -120,3 +153,28 @@ if has("autocmd")
   " Treat .md files as Markdown
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" ALE related config
+let g:ale_linters = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'perl': ['perl', 'perlcritic'],
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'css': ['prettier'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+"let g:ale_fix_on_save_ignore = 1
+
+set rtp+=/usr/local/opt/fzf
+set path+=**
+
+set background=dark
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()

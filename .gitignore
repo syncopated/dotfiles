@@ -14,3 +14,7 @@ Thumbs.db
 .Trashes
 
 .extra
+
+.vim/swaps
+
+.config/karabiner/automatic_backups
